@@ -15,13 +15,14 @@ class Prime
   end
 
   def isPrime(n)
-    t = 2
     limit = Math.sqrt(n).floor+1
 
-    while(t<limit)
-      return 0 if n%t==0
-      t += 1
+    @primes.each do |p|
+      break if p > limit
+
+      return 0 if n%p == 0
     end
+
     return 1
   end
 
@@ -46,7 +47,12 @@ class Prime
         p = num
         @primes << p
       end
-      num += 1
+
+      if(num%2 == 0)
+        num += 1
+      else
+        num += 2
+      end
     end
 
     return p
