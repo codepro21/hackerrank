@@ -6,14 +6,5 @@ t.downto(1) do
 end
 
 nums.each do |n|
-  sq_su = 0
-  su_sq = 0
-
-  su_sq = (1+n)*n/2*(1+n)*n/2
-
-  for i in 1..n
-    sq_su += i*i
-  end
-
-  puts su_sq-sq_su
+  puts (n-1)*n*(n+1)*(3*n+2)/12
 end
