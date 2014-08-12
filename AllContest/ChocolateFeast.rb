@@ -10,9 +10,9 @@ t.times{
 
   while(wr+re >= m)
     answer += (wr+re)/m
-    t = (wr+re)
-    wr = t/m
-    re = t%m
+    te = (wr+re)
+    wr = te/m
+    re = te%m
   end
 
   puts answer
