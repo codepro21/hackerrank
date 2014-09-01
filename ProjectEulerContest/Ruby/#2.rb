@@ -1,37 +1,15 @@
-t = gets.to_i
-nums = []
+gets.to_i.times{
+  n = gets.to_i
 
-t.downto(1) do
-  nums << gets.to_i
-end
+  f = 0
+  g = 1
+  even_sum = 0
 
-class Pibonacci
-  attr_accessor :prev, :current
-
-  def next
-    @prev += @current
-    temp = @current
-    @current = @prev
-    @prev = temp
-
-    return @current
+  while f < n
+    even_sum += f if f%2 == 0
+    f += g
+    g = f - g
   end
 
-  def eSum(n)
-    @prev = 1
-    @current = 2
-    even_sum = 2
-
-    while(self.next < n)
-      even_sum += @current if @current%2 == 0
-    end
-
-    puts even_sum
-  end
-end
-
-pib = Pibonacci.new
-
-nums.each do |n|
-  pib.eSum(n)
-end
+  puts even_sum
+}

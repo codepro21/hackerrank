@@ -5,14 +5,14 @@ t.downto(1) do
   nums << gets.to_i
 end
 
-def maxPrime(n)
-  largest = 0
+def getPrimes(n)
+  primes = []
   t = 2
   limit = Math.sqrt(n).floor+1
 
   while(t<limit)
     if(n%t == 0)
-      largest = t
+      primes << t
       n /= t
       t = 2
       limit = Math.sqrt(n).floor+1
@@ -21,12 +21,11 @@ def maxPrime(n)
     end
   end
 
-  largest = n if n > largest
-  return largest
+  primes << n
+  return primes.sort.reverse
 end
 
 def checkProduct(prime)
-
   depth = 0
   first = 0
   matrix = []
@@ -117,7 +116,6 @@ def checkProduct(prime)
 end
 
 def getPalindrom(n)
-
   pt = (n/1000)
   result = 0
 
@@ -125,31 +123,16 @@ def getPalindrom(n)
     pa = (pt.to_s + pt.to_s.reverse).to_i
 
     if(pa <= n)
+      prime = getPrimes(pa)
+      mp = prime[0]
 
-      mp = maxPrime(pa)
       if(mp < 1000)
-
         if(mp >= 100 && pa/mp < 1000)
           result = pa
-        else
-
-          prime = []
-          ps = pa
-          while(mp != ps)
-            prime << mp
-            ps /= mp
-            mp = maxPrime(ps)
-          end
-
-          prime << mp
-
-          if(checkProduct(prime) == 1)
-            result = pa
-          end
-
+        elsif (checkProduct(prime) == 1)
+          result = pa
         end
       end
-
     end
     pt -= 1
   end
